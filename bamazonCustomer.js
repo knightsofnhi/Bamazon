@@ -46,8 +46,15 @@ function confirmItem() {
         function (error, res){
             if(res[0].stock_quantity - parseInt(response.quantity) > 0) {
                 console.log("Thank you for your purchase!")
+                // const newStock=stock_quantity - quantity;
+                // connect.query("UPDATE products SET stock_quantity = ? WHERE item_ID = ?"),
+                // {
+                //     stock_quantity: newStock,
+                // }
+                // console.log(newStock);
             } else {
                 console.log("Sorry, insufficient quantity. Please change your quantity, or check back for restock.")
+                confirmItem();
             }
             // console.log(res);
             })
