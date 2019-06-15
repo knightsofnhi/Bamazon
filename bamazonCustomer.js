@@ -44,12 +44,24 @@ function confirmItem() {
         connection.query("SELECT stock_quantity FROM products WHERE item_id = ?",
             [response.itemID],
             function (error, res) {
+                console.log(res);
+                
                 if (res[0].stock_quantity - parseInt(response.quantity) > 0) {
-
                     console.log("Thank you for your purchase!");
 
-                    // connection.query("UPDATE stock_quantity FROM products WHERE quantity = ?");
+                    const newQuantity = res[0].stock_quantity - parseInt(response.quantity);
 
+                    connection.query("UPDATE products SET ? WHERE ?",
+                    [
+                        {
+                            stock_quantity: newQuantity
+                        },
+                        {
+                            item_id: response.itemID
+                        }
+                    ]
+                    
+                    )
 
                 } else {
                     console.log("Sorry, insufficient quantity. Please change your quantity, or check back for restock.")
