@@ -41,22 +41,21 @@ function confirmItem() {
         }
     ]).then(function (response) {
         console.log(response);
-        connection.query("SELECT stock_quantity FROM products WHERE item_id = ?", 
-        [response.itemID],
-        function (error, res){
-            if(res[0].stock_quantity - parseInt(response.quantity) > 0) {
-                console.log("Thank you for your purchase!")
-                // const newStock=stock_quantity - quantity;
-                // connect.query("UPDATE products SET stock_quantity = ? WHERE item_ID = ?"),
-                // {
-                //     stock_quantity: newStock,
-                // }
-                // console.log(newStock);
-            } else {
-                console.log("Sorry, insufficient quantity. Please change your quantity, or check back for restock.")
-                confirmItem();
-            }
-            // console.log(res);
+        connection.query("SELECT stock_quantity FROM products WHERE item_id = ?",
+            [response.itemID],
+            function (error, res) {
+                if (res[0].stock_quantity - parseInt(response.quantity) > 0) {
+
+                    console.log("Thank you for your purchase!");
+
+                    // connection.query("UPDATE stock_quantity FROM products WHERE quantity = ?");
+
+
+                } else {
+                    console.log("Sorry, insufficient quantity. Please change your quantity, or check back for restock.")
+                    confirmItem();
+                }
+                // console.log(res);
             })
     })
 };  
