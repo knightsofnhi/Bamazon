@@ -58,8 +58,13 @@ function confirmItem() {
                         },
                         {
                             item_id: response.itemID
-                        }
+                        },
+
+                        
+                       
                     ]
+
+                    
                     
                     )
 
@@ -69,5 +74,6 @@ function confirmItem() {
                 }
                 // console.log(res);
             })
-    })
+    
+        })
 };  
